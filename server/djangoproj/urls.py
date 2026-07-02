@@ -1,4 +1,9 @@
-"""djangoproj URL Configuration
+from django.views.generic import TemplateView
+
+urlpatterns += [
+    path('about/', TemplateView.as_view(template_name="About.html")),
+    path('contact/', TemplateView.as_view(template_name="Contact.html")),
+]"""djangoproj URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
