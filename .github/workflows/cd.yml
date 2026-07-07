@@ -1,0 +1,22 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        working-directory: server/database
+        run: docker build -t nodeapp .
+
+      - name: Docker Image Check
+        run: docker images
+
