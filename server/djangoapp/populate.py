@@ -1,4 +1,4 @@
-from .models import Dealer
+from djangoapp.models import Dealer
 
 def initiate():
     dealer_data = [
