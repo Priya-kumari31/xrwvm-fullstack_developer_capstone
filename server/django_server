@@ -1,0 +1,58 @@
+Making migrations and migrating the database.
+System check identified some issues:
+
+WARNINGS:
+?: (staticfiles.W004) The directory '/app/frontend/build/static' in the STATICFILES_DIRS setting does not exist.
+Migrations for 'djangoapp':
+  djangoapp/migrations/0002_dealer_remove_carmake_created_at_and_more.py
+    + Create model Dealer
+    - Remove field created_at from carmake
+    - Remove field created_at from carmodel
+    - Remove field dealer_id from carmodel
+    ~ Alter field description on carmake
+    ~ Alter field car_make on carmodel
+    ~ Alter field type on carmodel
+    ~ Alter field year on carmodel
+    + Create model Review
+System check identified some issues:
+
+WARNINGS:
+?: (staticfiles.W004) The directory '/app/frontend/build/static' in the STATICFILES_DIRS setting does not exist.
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, djangoapp, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying djangoapp.0001_initial... OK
+  Applying djangoapp.0002_dealer_remove_carmake_created_at_and_more... OK
+  Applying sessions.0001_initial... OK
+System check identified some issues:
+
+WARNINGS:
+?: (staticfiles.W004) The directory '/app/frontend/build/static' in the STATICFILES_DIRS setting does not exist.
+
+130 static files copied to '/app/static'.
+[2026-07-09 07:02:37 +0000] [1] [INFO] Starting gunicorn 26.0.0
+[2026-07-09 07:02:37 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[2026-07-09 07:02:37 +0000] [1] [INFO] Using worker: sync
+[2026-07-09 07:02:37 +0000] [10] [INFO] Booting worker with pid: 10
+[2026-07-09 07:02:37 +0000] [11] [INFO] Booting worker with pid: 11
+[2026-07-09 07:02:37 +0000] [12] [INFO] Booting worker with pid: 12
+[2026-07-09 07:02:38 +0000] [1] [INFO] Control socket listening at /root/.gunicorn/gunicorn.ctl
+Not Found: /djangoapp/dealer/3/
+Not Found: /djangoapp/dealer/3/
