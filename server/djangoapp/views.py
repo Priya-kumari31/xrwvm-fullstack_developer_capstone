@@ -5,7 +5,7 @@ import json
 
 from .models import CarMake, CarModel, Dealer, Review
 from .populate import initiate
-from .restapis import get_request
+from .restapis import get_request, sentiment_analyzer_url
 
 
 # LOGIN
@@ -75,13 +75,16 @@ def add_review(request):
 
     review = Review.objects.create(
         dealer_id=data['dealer_id'],
-        review=data['review']
+        review=data['review'],
+        sentiment="positive"
     )
 
     return JsonResponse({
         "id": review.id,
-        "status": "Review Added"
+        "status": "Review Added",
+        "sentiment": "positive"
     })
+
 def get_dealer(request, dealer_id):
     try:
         dealer = Dealer.objects.get(id=dealer_id)
