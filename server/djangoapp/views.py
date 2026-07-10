@@ -41,41 +41,50 @@ def get_cars(request):
 
 # DEALERSHIPS (REAL DB)
 def get_dealerships(request):
-    dealers = Dealer.objects.all()
+    if "state" in request.GET:
+        response = get_request("/fetchDealers/" + request.GET["state"])
+    else:
+        response = get_request("/fetchDealers")
 
-    data = [
-        {"id": d.id, "full_name": d.full_name, "city": d.city, "address": d.address, "zip": d.zip, "state": d.state}
-        for d in dealers
-    ]
-
-    return JsonResponse({"dealerships": data})
+    return JsonResponse({"dealerships": response}, safe=False)
 
 
 # REVIEWS (FILTER BY DEALER)
 def get_dealer_reviews(request):
-    dealer_id = request.GET.get('dealer_id')
+    dealer_id = request.GET.get("dealer_id")
 
-    if dealer_id:
-        reviews = Review.objects.filter(dealer_id=dealer_id)
-    else:
-        reviews = Review.objects.all()
+    reviews = Review.objects.filter(dealer_id=dealer_id)
 
-    data = [
-        {"id": r.id, "dealer": r.dealer_id, "review": r.review}
-        for r in reviews
-    ]
+    data = []
+
+    for r in reviews:
+        data.append({
+            "id": r.id,
+            "name": r.name,
+            "dealership": int(dealer_id),
+            "review": r.review,
+            "car_make": r.car_make,
+            "car_model": r.car_model,
+            "car_year": r.car_year,
+            "sentiment": r.sentiment
+        })
 
     return JsonResponse({"reviews": data})
 
 
 # ADD REVIEW (POST API)
 @csrf_exempt
+@csrf_exempt
 def add_review(request):
     data = json.loads(request.body)
 
     review = Review.objects.create(
-        dealer_id=data['dealer_id'],
+        dealer_id=data['dealership'],
+        name=data['name'],
         review=data['review'],
+        car_make=data['car_make'],
+        car_model=data['car_model'],
+        car_year=data['car_year'],
         sentiment="positive"
     )
 
@@ -84,21 +93,6 @@ def add_review(request):
         "status": "Review Added",
         "sentiment": "positive"
     })
-
 def get_dealer(request, dealer_id):
-    try:
-        dealer = Dealer.objects.get(id=dealer_id)
-
-        data = {
-            "id": dealer.id,
-            "full_name": dealer.full_name,
-            "city": dealer.city,
-            "address": dealer.address,
-            "zip": dealer.zip,
-            "state": dealer.state
-        }
-
-        return JsonResponse(data)
-
-    except Dealer.DoesNotExist:
-        return JsonResponse({"error": "Dealer not found"}, status=404)
+    response = get_request("/fetchDealer/" + str(dealer_id))
+    return JsonResponse(response, safe=False)
