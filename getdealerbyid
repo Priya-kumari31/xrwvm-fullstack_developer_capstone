@@ -1,0 +1,3 @@
+curl http://localhost:3030/fetchDealer/7
+Output:
+{"_id":"6a531f7e1a2c68bff1ace5c2","id":7,"city":"Pueblo","state":"Colorado","address":"9 Cambridge Park","zip":"81010","lat":"38.1286","long":"-104.5523","short_name":"Job","full_name":"Job Car Dealership","__v":0}
