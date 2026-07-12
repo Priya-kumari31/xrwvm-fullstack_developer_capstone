@@ -1,0 +1,3 @@
+curl http://localhost:3030/fetchReviews/dealer/7
+Output:
+[{"_id":"6a531f7e1a2c68bff1ace5b8","id":49,"name":"Jo-anne Szwandt","dealership":7,"review":"Self-enabling maximized focus group","purchase":true,"purchase_date":"01/26/2021","car_make":"Mercedes-Benz","car_model":"CL-Class","car_year":1999,"__v":0}]
